@@ -53,6 +53,10 @@ input[type="text"],input[type="email"]{
   background-image: none;
   border: 1px solid #ccc;
   border-radius: 4px;
+}
+.forme-controle{
   margin-bottom: 20px;
-
+}
+.error{
+  color:red;
 }

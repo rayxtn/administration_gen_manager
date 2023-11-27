@@ -1,5 +1,7 @@
 import React from "react";
-import { useFormik } from "formik";
+import {Formik , Form, Field ,ErrorMessage } from "formik";
+import TextError from "./TextError";
+// import * as Yup from "yup";
 
 function PersonelsForm(){
 
@@ -19,9 +21,9 @@ function PersonelsForm(){
         cin:'',
         identifier:''
     };
-    const onSubmit = values =>{
-        console.log('form data :', values);
-    };
+    // const onSubmit = values =>{
+    //     console.log('form data :', values);
+    // };
     const validate = values => {
         let errors = {};
         if(!values.number){
@@ -29,78 +31,80 @@ function PersonelsForm(){
         }
         return errors;
      }
+    //  const ValidationSchema = Yup.object({
+    //     number: Yup.string().required('Required'),
+    //  });
 
-    const formik = useFormik({
-        initialValues,
-        onSubmit,
-        validate
-    });
-    
+
     return(
         <div>
-            <form onSubmit={formik.handleSubmit}>
+            <Formik
+            initialValues ={initialValues}
+            validate = {validate} 
+            onSubmit>
+            <Form>
                 <div className="form-controle">
                 <label htmlFor="name">Number</label>
-                <input type="text" id="number" name="number" onBlur={formik.handleBlur} onChange={formik.handleChange} value={formik.values.number}/>
-                {formik.touched.number && formik.errors.number ?  ( <div className="error">{formik.touched.number && formik.errors.number}</div> ) : null}
+                <Field type="text" id="number" name="number" />
+                <ErrorMessage  name="number" component={TextError}/>
                 </div>
 
                 <div className="form-controle">
                 <label htmlFor="name">Name</label>
-                <input type="text" id="name" name="name" onBlur={formik.handleBlur} onChange={formik.handleChange} value={formik.values.name}/>
+                <Field type="text" id="name" name="name" />
                 </div>
 
                 <div className="form-controle">
                 <label htmlFor="name">Family Name</label>
-                <input type="text" id="familyname" name="familyname" onBlur={formik.handleBlur} onChange={formik.handleChange} value={formik.values.familyname}/>
+                <Field type="text" id="familyname" name="familyname" />
                 </div>
 
                 <div className="form-controle"></div>
                 <label htmlFor="name">Father Name</label>
-                <input type="text" id="fathername" name="fathername" onBlur={formik.handleBlur} onChange={formik.handleChange} value={formik.values.fathername}/>
+                <Field type="text" id="fathername" name="fathername" />
 
                 <div className="form-controle">
                 <label htmlFor="name">ARM</label>
-                <input type="text" id="arm" name="arm" onBlur={formik.handleBlur} onChange={formik.handleChange} value={formik.values.arm}/>
+                <Field type="text" id="arm" name="arm" />
                 </div>
 
                 <div className="form-controle">
                 <label htmlFor="name">Class</label>
-                <input type="text" id="class" name="class" onBlur={formik.handleBlur} onChange={formik.handleChange} value={formik.values.class}/>
+                <Field type="text" id="class" name="class" />
                 </div>
 
                 <div className="form-controle">
                 <label htmlFor="name">Grade</label>
-                <input type="" id="grade" name="grade" onBlur={formik.handleBlur} onChange={formik.handleChange} value={formik.values.grade}/>
+                <Field type="" id="grade" name="grade" />
                 </div>
 
                 <div className="form-controle">
                 <label htmlFor="name">Structure</label>
-                <input type="text" id="structure" name="structure" onBlur={formik.handleBlur} onChange={formik.handleChange} value={formik.values.structure}/>
+                <Field type="text" id="structure" name="structure" />
                 </div>
 
                 <div className="form-controle">
                 <label htmlFor="name">Departement</label>
-                <input type="text" id="departement" name="departement" onBlur={formik.handleBlur} onChange={formik.handleChange} value={formik.values.departement}/>
+                <Field type="text" id="departement" name="departement" />
                 </div>
 
                 <div className="form-controle">
                 <label htmlFor="name">Situation</label>
-                <input type="text" id="situation" name="situation" onBlur={formik.handleBlur} onChange={formik.handleChange} value={formik.values.situation}/>
+                <Field type="text" id="situation" name="situation" />
                 </div>
 
                 <div className="form-controle">
                 <label htmlFor="name">CIN Number</label>
-                <input type="text" id="cin" name="cin" onBlur={formik.handleBlur} onChange={formik.handleChange} value={formik.values.cin}/>
+                <Field type="text" id="cin" name="cin" />
                 </div>
 
                 <div className="form-controle">
                 <label htmlFor="name">Indentifier</label>
-                <input type="text" id="identifier" name="identifier" onBlur={formik.handleBlur} onChange={formik.handleChange} value={formik.values.identifier}/>
+                <Field type="text" id="identifier" name="identifier" />
                 </div>
                 <button type="submit">Submit</button>
-
-            </form>
+                </Form>
+            </Formik>
         </div>
     )
 
